@@ -48,7 +48,7 @@ let test_lookup_functions () =
     Device: 82371AB/EB/MB PIIX4 ACPI [7113]
     SVendor:        Red Hat, Inc [1af4]
     SDevice:        Qemu virtual machine [1100] *)
-  let test_lookup = assert_equal ~printer:(fun x -> x) in
+  let test_lookup s os = assert_equal ~printer:(function | Some x -> x | None -> "") (Some s) os in
   with_dump (fun acc ->
     test_lookup "Bridge" @@ lookup_class_name acc 0x0680;
     test_lookup "Intel Corporation" @@ lookup_vendor_name acc 0x8086;
