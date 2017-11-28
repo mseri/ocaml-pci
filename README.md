@@ -23,11 +23,14 @@ The easiest way to install this library is to use `opam`:
     opam install pci
 
 However, if you don't use `opam`, you can compile from source by cloning this
-repo and executing the usual dance:
+repo and executing jbuilder:
 
-    ./configure
-    make
-    make install
+    jbuilder build
+
+To compile and run the example you can execute:
+
+    jbuilder build examples/lspci.exe
+    _build/default/examples/lspci.exe
 
 ## Documentation
 

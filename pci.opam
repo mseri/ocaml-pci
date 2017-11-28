@@ -5,22 +5,11 @@ homepage:     "https://github.com/simonjbeaumont/ocaml-pci"
 bug-reports:  "https://github.com/simonjbeaumont/ocaml-pci/issues"
 dev-repo:     "https://github.com/simonjbeaumont/ocaml-pci.git"
 
-build: [
-  ["./configure"]
-  [make]
-]
-build-test: [
-  ["./configure" "--enable-tests"]
-  [make "test"]
-]
-install: [make "install"]
-remove: [
-  ["ocamlfind" "remove" "pci"]
-  ["ocamlfind" "remove" "pci_bindings"]
-]
+build: [[ "jbuilder" "build" "-p" name "-j" jobs ]]
+build-test: [[ "jbuilder" "runtest" "-p" name "-j" jobs ]]
 depends: [
   "ctypes" {>= "0.4"}
-  "ocamlfind" {build}
+  "jbuilder" {build}
   "ounit" {test}
 ]
 available: [ocaml-version >= "4.01.0" & os = "linux"]
